@@ -1,37 +1,90 @@
 
   <style>
-    body { 
-        font-family: 'Poppins', sans-serif; 
-        overflow-x: hidden; background: #f7ffe5; 
+    @font-face {
+      font-family: "PlayfairDisplayBlackItalic";
+      src: url("fonts/PlayfairDisplay-BlackItalic.ttf") format("truetype");
+      font-weight: 700;
+      font-style: italic;
     }
 
+      @font-face {
+      font-family: "PlayfairDisplayBlackItalic";
+      src: url("fonts/PlayfairDisplay-BlackItalic.ttf") format("truetype");
+      font-weight: 700;
+      font-style: italic;
+    }
+
+
+    @font-face {
+      font-family: "PlayfairDisplayBlackItalic";
+      src: url("fonts/PlayfairDisplay-BlackItalic.ttf") format("truetype");
+      font-weight: 700;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: "PlayfairDisplayItalic";
+      src: url("fonts/PlayfairDisplay-Italic.ttf") format("truetype");
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    @font-face {
+      font-family: "RalewaySemiBold";
+      src: url("fonts/Raleway-SemiBold.ttf") format("truetype");
+      font-weight: 700;
+    }
+
+
+    body { 
+        font-family: 'RalewaySemiBold', sans-serif; 
+        overflow-x: hidden; background: #f7ffe5; 
+    }
+    .nav-link {
+        color: #FFCF50 ;
+    }
+
+    .nav-link:hover {
+        color: #1d7d27 !important;
+    }
     .navbar-brand { 
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "PlayfairDisplayBlackItalic", serif;
         font-size: 2rem; 
         font-weight: 700; 
-        color: #0A400C; 
+        color: #FFCF50; 
+        text-align:center; 
     }
     .nav-link:hover { 
         color: #FFCF50;  
     }
-    .my-nav{
-        background-color: #FEFAE0; 
-    }
-    
 
-
-    /* HERO */
-    .hero {
-      height: 90vh;
-      background: url("images_mp2/bg.jpg") center/cover no-repeat;
-      position: relative; color: white;
-      display: flex; justify-content:center; align-items:center; text-align:center;
-      animation: fadeInSmooth 2s ease-in-out;
+    .navbar {
+        background-color: transparent ;
+        box-shadow: none;
     }
 
-    .hero::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.45); }
-    .hero > div { position:relative; z-index:2; }
 
-    @keyframes fadeInSmooth { from{opacity:0;} to{opacity:1;} }
+  .hero {
+    position: relative;
+    height: 100vh;            
+    width: 100%;               
+    display: block;             
+    justify-content: center;   
+    align-items: center;       
+    background: url("images_mp2/bgf (1).jpg") no-repeat center center;
+    background-size: cover;    /* stretch image to cover entire section */
+    overflow: hidden;
+}
+
+.hero .hero-content {
+    position: absolute;
+    top: 60%;           
+    left: 65%;         
+    transform: translate(-50%, -50%); 
+    text-align: center;
+}
 
     /* MENU CARDS */
     .food-card { transition: 0.3s ease; border-radius: 15px; overflow:hidden; }
@@ -58,98 +111,119 @@
     border: none;
       }
 
-  /* footer */
-    footer {
-  background-color: #111;
-  color: white;
-  padding: 3rem 5%;
-  font-family: 'Poppins', sans-serif;
+.best-sellers {
+    height: 100vh;                 
+    width: 100%;                    
+    display: flex;                 
+    flex-direction: column;         
+    align-items: center;       
+    background: url("images_mp2/bg25 (1).jpg"); 
+    background-size: cover; 
+    padding: 2rem;                 
+}
+.best-sellers .caption{
+    color: black;
+    font-family:
 }
 
+
+.best-sellers .row {
+    width: 100%;                    
+    max-width: 1200px;    
+    margin-top: 120px; 
+    max-width: 1200px; 
+    margin-left: auto;
+    margin-right: auto;
+}          
+.col-md-4 .caption{
+  font-family: "Poppins", sans-serif;
+}
+.col-md-4 .btn{
+  background-color: #ffcc00;
+}
 
 .footer-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem; /* reduced from 2rem */
 }
-
 
 .footer-left {
   flex: 1;
   min-width: 250px;
-  max-width: 500px;
-  line-height: 1.6;
+  max-width: 450px; /* slightly smaller max-width */
+  line-height: 1.5; /* tighter spacing */
 }
 
 .footer-left h3 {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem; /* reduced from 0.8rem */
   text-align: left;
 }
 
 .footer-left p {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem; /* reduced from 1rem */
 }
 
 .social-links a {
   color: #ccc;
-  font-size: 1.5rem;
-  margin-right: 10px;
+  font-size: 1.3rem; /* slightly smaller */
+  margin-right: 8px; /* reduced spacing */
   transition: color 0.3s;
 }
+
 .social-links a:hover {
   color: #ffd700;
 }
 
-
 .footer-right {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem; /* slightly smaller */
   align-items: flex-end;
 }
 
 .footer-section {
-  background: none; 
-  padding: 0;       
-  border: none;     
+  background: none;
+  padding: 0;
+  border: none;
   text-align: right;
 }
 
 .footer-section h3 {
   color: #ffd700;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+  margin-bottom: 0.3rem; /* reduced */
+  font-size: 1rem; /* slightly smaller */
 }
-
+ 
 .footer-section p {
-  margin: 0.3rem 0;
+  margin: 0.2rem 0; /* tighter */
   color: #ccc;
   text-align: left;
 }
 
-
 .footer-section img {
-  margin-right: 10px;
-  border-radius: 6px;
-  align-items: left;
+  margin-right: 6px; /* reduced */
+  border-radius: 4px; /* slightly smaller radius */
 }
+
 .footer-bottom {
   text-align: center;
   color: #888;
-  font-size: 0.9rem;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: none; 
+  font-size: 0.85rem; /* slightly smaller */
+  margin-top: 1rem; /* reduced from 2rem */
+  padding-top: 0.5rem; /* reduced from 1rem */
+  border-top: none;
 }
 
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 1rem;
   }
 
   .footer-right {
