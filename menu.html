@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  <style>
+    .menu-section {
+      background: url('images_mp2/bg12.jpg') no-repeat center center;
+      background-size: cover;
+      padding: 7rem 3rem;
+      position: relative;
+    }
+    .menu-section::before {
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .menu-section .container {
+      position: relative;
+      z-index: 2;
+    }
+    .card-body .btn {
+      margin-bottom: 0.5rem;
+      background-color: #efd528; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar-->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand mx-auto" href="/index.html">ali's guo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/menu.html">Menu</a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.html#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#contact">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link cart-btn" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Menu Section -->
+  <section class="menu-section">
+    <div class="container">
+      <h1 class="text-center mb-4 fw-bold"></h1>
+      <div class="row" id="menu-container"></div>
+    </div>
+  </section>
+
+  <!-- Cart Section -->
+  <div class="container py-5">
+    <h2 class="mt-5 fw-bold">🛒 Cart</h2>
+    <ul id="cart-list" class="list-group mb-4"></ul>
+    <h4>Total: ₱<span id="total-price">0</span></h4>
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <ul id="cart-list-modal" class="list-group mb-3"></ul>
+          <h5>Total: ₱<span id="total-price-modal">0</span></h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const products = [
+      { name: "Chicken Biryani", price: 210, image: "images_mp2/chicken biryani.jpg", reviews: 4.8, link: "chicken-biryani.html" },
+      { name: "Basmati Rice", price: 149, image: "images_mp2/rice.jpg", reviews: 4.7, link: "#" },
+      { name: "Beef Shawarma Rice", price: 110, image: "images_mp2/beef shawarma rice.jpg", reviews: 4.9, link: "#" },
+      { name: "Samosa", price: 30, image: "images_mp2/samosa.jpg", reviews: 4.5, link: "#" },
+    ];
+
+    const menuContainer = document.getElementById("menu-container");
+    const cartList = document.getElementById("cart-list");
+    const cartListModal = document.getElementById("cart-list-modal");
+    const totalPriceEl = document.getElementById("total-price");
+    const totalPriceModal = document.getElementById("total-price-modal");
+    
+    let total = 0;
+    let cart = [];
+
+    //Function to create and display the items
+    products.forEach((product, index) => {
+      const card = document.createElement("div");
+      card.className = "col-md-3 mb-4"; 
+
+      card.innerHTML = `
+        <div class="card shadow-sm h-100">
+          <img src="${product.image}" class="card-img-top" />
+          <div class="card-body text-center">
+            <h5 class="fw-bold">${product.name}</h5>
+            <p class="text-muted">⭐ ${product.reviews} / 5</p>
+            <p class="fw-bold">₱${product.price}</p>
+            <div class="d-flex flex-column gap-2">
+              <button class="btn btn-success w-100" onclick="addToCart(${index})">Add to Cart</button>
+              ${product.link ? `<a href="${product.link}" class="btn btn-primary w-100">View Details</a>` : ""}
+            </div>
+          </div>
+        </div>`;
+      menuContainer.appendChild(card);
+    });
+
+//Function for adding to cart 
+function addToCart(index) {
+  const item = products[index];
+  let exists = false;
+
+  // Check if item already in cart and adds the quantity
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].name === item.name) {
+      cart[i].qty++;
+      exists = true;
+      break;
+    }
+  }
+
+  //adds the new entry to cart if it doesn't exist
+  if (!exists) {
+    cart.push({ name: item.name, price: item.price, qty: 1 });
+  }
+
+  function updateCart() {
+  //Clears cart
+  cartList.innerHTML = "";
+  cartListModal.innerHTML = "";
+  total = 0;
+
+  //Updates the new cart
+  cart.forEach(item => {
+    total += item.price * item.qty;
+
+    const row = `
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>${item.name} - ₱${item.price} x ${item.qty}</span>
+      </li>
+    `;
+  
+    cartList.innerHTML += row;
+    cartListModal.innerHTML += row;
+  });
+
+  //Updates the total price 
+  totalPriceEl.textContent = total;
+  totalPriceModal.textContent = total;
+}
+
+  updateCart();
+
+  // Show the modal
+  var cartModalEl = document.getElementById('cartModal');
+  var cartModal = new bootstrap.Modal(cartModalEl);
+  cartModal.show();
+}
+  </script>
+</body>
+</html>
