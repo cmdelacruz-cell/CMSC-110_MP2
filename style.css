@@ -1,20 +1,5 @@
 
-  <style>
-    @font-face {
-      font-family: "PlayfairDisplayBlackItalic";
-      src: url("fonts/PlayfairDisplay-BlackItalic.ttf") format("truetype");
-      font-weight: 700;
-      font-style: italic;
-    }
-
-      @font-face {
-      font-family: "PlayfairDisplayBlackItalic";
-      src: url("fonts/PlayfairDisplay-BlackItalic.ttf") format("truetype");
-      font-weight: 700;
-      font-style: italic;
-    }
-
-
+<style>
     @font-face {
       font-family: "PlayfairDisplayBlackItalic";
       src: url("fonts/PlayfairDisplay-BlackItalic.ttf") format("truetype");
@@ -56,14 +41,16 @@
         color: #FFCF50; 
         text-align:center; 
     }
-    .nav-link:hover { 
-        color: #FFCF50;  
-    }
 
     .navbar {
         background-color: transparent ;
         box-shadow: none;
     }
+
+  
+  #about {
+    scroll-margin-top: 80px; 
+  }
 
 
   .hero {
@@ -96,7 +83,7 @@
       --yellow-main: #ffcc00;
       --orange: #ff9933;
     }
-        body {
+    body {
       background-color: #fffbea;
     }
     .card-img-top {
@@ -123,7 +110,7 @@
 }
 .best-sellers .caption{
     color: black;
-    font-family:
+    font-family: "Poppins";
 }
 
 
@@ -131,7 +118,6 @@
     width: 100%;                    
     max-width: 1200px;    
     margin-top: 120px; 
-    max-width: 1200px; 
     margin-left: auto;
     margin-right: auto;
 }          
